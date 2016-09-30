@@ -14,7 +14,6 @@ import javax.persistence.Version;
 @Entity
 @Table(name = "TEST.Users")
 public class User implements Serializable{
-	
 	/**
 	 * 
 	 */

@@ -55,6 +55,7 @@ public class UserManagerImpl implements UserLocal,UserRemote {
 
 	@Override
 	public void removeUser(final User user) {
-		em.remove(em.contains(user) ? user : em.merge(user));
+		User userToBeRemoved = em.getReference(User.class, user.getId());
+	    em.remove(userToBeRemoved);
 	}
 }

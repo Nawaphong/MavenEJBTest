@@ -22,20 +22,22 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 import org.jboss.shrinkwrap.resolver.api.maven.MavenFormatStage;
 import org.junit.Assert;
-import org.junit.Ignore;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 
 import com.sample.entity.User;
 import com.sample.jpa.UserRemote;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @RunWith(Arquillian.class)
 public class UserManagerTest {
 
 	@EJB(name = "java:jboss/exported/user-manager-ejb-test/UserManagerImpl!com.sample.jpa.UserRemote")
 	UserRemote userRemote;
 
-	private int id;
+	private static Integer id;
 	
 	@Deployment(name="UserManager")
 	public static Archive<?> createDeployment() throws IOException {
@@ -77,48 +79,51 @@ public class UserManagerTest {
 	}
 	
 	@Test
-	public void callSayHelloShouldBeGetMessage() throws NamingException {
+	public void call1_SayHelloShouldBeGetMessage() throws NamingException {
 		// fail("Not yet implemented");
 		assertTrue("Hello World !!!".equals(userRemote.sayHello()));
 	}
 
 	@Test
-	public void callCreateUserShouldBeGetUserId() {
+	public void call2_CreateUserShouldBeGetUserId() {
 		User user = userRemote.createUser(new User("test2", "test2", "test2"));
 		id = user.getId();
+		System.out.println("callCreateUserShouldBeGetUserId : "+id);
 		Assert.assertNotNull(user.getId());
 	}
 	
 	@Test
-	public void callGetUserShouldBeGetUserNotNull() {
+	public void call3_GetUserShouldBeGetUserNotNull() {
 		List<User> users = userRemote.getUsers();
 		Assert.assertNotNull(users);
 	}
 	
 //	@Ignore
 	@Test
-	public void callUpdateUserShouldBeSuccess(){
+	public void call4_UpdateUserShouldBeSuccess(){
 //		helloRemote.getItems();
-		User item = userRemote.getUserById(id);
-		item.setName("testItem2");
-		item = userRemote.updateUser(item);
-		assertEquals("testItem2",item.getName());
+		System.out.println("callUpdateUserShouldBeSuccess : "+id);
+		User user = userRemote.getUserById(id);
+		user.setName("testItem2");
+		user = userRemote.updateUser(user);
+		assertEquals("testItem2",user.getName());
 	}
 	
 //	@Ignore
 	@Test
-	public void callRemoveUserShouldBeSuccess(){
+	public void call5_RemoveUserShouldBeSuccess(){
 //		helloRemote.getItems();
+		System.out.println("callRemoveUserShouldBeSuccess : "+id);
 		User item = userRemote.getUserById(id);
 		userRemote.removeUser(item);
 		assertTrue(true);
 	}
 
 	@Test
-	public void callUpdateMultipleThreadShouldBeGetException() {
+	public void call6_UpdateMultipleThreadShouldBeGetException() {
 		
-		RunnableDemo r1 = new RunnableDemo(50, 1, userRemote,null);
-		RunnableDemo r2 = new RunnableDemo(5, 2, userRemote,r1);
+		RunnableDemo r1 = new RunnableDemo(1400, 1, userRemote,null);
+		RunnableDemo r2 = new RunnableDemo(1400, 2, userRemote,r1);
 		r1.start();
 		r2.start();
 	}

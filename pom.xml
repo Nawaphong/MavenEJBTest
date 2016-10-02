@@ -219,6 +219,12 @@
 			<version>3.3.0.Final</version>
 			<scope>test</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.jbehave/jbehave-core -->
+		<dependency>
+		    <groupId>org.jbehave</groupId>
+		    <artifactId>jbehave-core</artifactId>
+		    <version>4.0.5</version>
+		</dependency>
 
 	</dependencies>
 

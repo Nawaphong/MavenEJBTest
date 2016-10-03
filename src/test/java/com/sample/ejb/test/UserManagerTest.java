@@ -121,7 +121,7 @@ public class UserManagerTest {
 		assertTrue(true);
 	}
 
-	@Ignore
+//	@Ignore
 	@Test
 	public void call6_UpdateMultipleThreadShouldBeGetException() {
 		

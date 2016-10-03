@@ -23,6 +23,7 @@ import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 import org.jboss.shrinkwrap.resolver.api.maven.MavenFormatStage;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
@@ -120,6 +121,7 @@ public class UserManagerTest {
 		assertTrue(true);
 	}
 
+	@Ignore
 	@Test
 	public void call6_UpdateMultipleThreadShouldBeGetException() {
 		

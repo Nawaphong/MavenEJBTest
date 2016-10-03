@@ -33,6 +33,7 @@ import com.sample.jpa.UserRemote;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @RunWith(Arquillian.class)
 public class UserManagerTest {
+	
 
 	@EJB(name = "java:jboss/exported/user-manager-ejb-test/UserManagerImpl!com.sample.jpa.UserRemote")
 	UserRemote userRemote;

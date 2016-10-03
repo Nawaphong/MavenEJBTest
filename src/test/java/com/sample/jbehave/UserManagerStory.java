@@ -11,6 +11,8 @@ import org.jbehave.core.reporters.StoryReporterBuilder;
 import org.jbehave.core.steps.CandidateSteps;
 import org.jbehave.core.steps.InstanceStepsFactory;
 
+import org.junit.runner.RunWith;
+
 public class UserManagerStory extends JUnitStory{
 	@Override
 	public Configuration configuration() {

@@ -31,7 +31,7 @@ public class UserManagerImpl implements UserLocal,UserRemote {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> getUsers() {
-		Query query = em.createQuery("SELECT u FROM User u");
+		Query query = em.createQuery("SELECT u FROM User u ORDER BY u.id");
 		List<User> users = (List<User>) query.getResultList();
 		return users;
 	}

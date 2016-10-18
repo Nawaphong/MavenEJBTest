@@ -18,6 +18,7 @@ import com.sample.entity.User;
 @Remote(UserRemote.class)
 public class UserManagerImpl implements UserLocal,UserRemote {
 	
+	
 	@PersistenceContext(unitName = "userDB")
 	private EntityManager em;
 
